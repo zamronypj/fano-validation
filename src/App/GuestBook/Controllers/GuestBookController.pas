@@ -24,6 +24,8 @@ type
      * @author [[AUTHOR_NAME]] <[[AUTHOR_EMAIL]]>
      *------------------------------------------------*)
     TGuestBookController = class(TRouteHandler)
+    private
+        fValidator : IValidation;
     public
         function handleRequest(
             const request : IRequest;
