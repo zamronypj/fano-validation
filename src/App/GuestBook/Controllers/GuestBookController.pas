@@ -24,8 +24,6 @@ type
      * @author [[AUTHOR_NAME]] <[[AUTHOR_EMAIL]]>
      *------------------------------------------------*)
     TGuestBookController = class(TRouteHandler)
-    private
-        fValidator : IValidation;
     public
         function handleRequest(
             const request : IRequest;
@@ -41,7 +39,7 @@ implementation
     ) : IResponse;
     begin
         {---put your code here---}
-        //response.body().write('nice');
+        response.body().write('nice');
         result := response;
     end;
 

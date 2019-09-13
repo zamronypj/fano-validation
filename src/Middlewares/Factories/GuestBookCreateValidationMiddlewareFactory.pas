@@ -17,7 +17,7 @@ type
 
     TGuestBookCreateValidationMiddlewareFactory = class(TFactory, IDependencyFactory)
     private
-        function createValidator() : IValidation;
+        function createValidator() : IRequestValidator;
     public
         function build(const container : IDependencyContainer) : IDependency; override;
     end;
@@ -27,25 +27,25 @@ implementation
 uses
     sysutils;
 
-    function TGuestBookCreateValidationMiddlewareFactory.createValidator() : IValidation;
+    function TGuestBookCreateValidationMiddlewareFactory.createValidator() : IRequestValidator;
     begin
-        result := (new TValidation.create(THashList.create()))
-            .add(
+        result := ((TValidation.create(THashList.create()))
+            .addRule(
                 'name',
-                new CompositeValidator([
-                    new RequiredValidator(),
-                    new AlphaNumSpaceValidator()
+                TCompositeValidator.create([
+                    TRequiredValidator.create(),
+                    TAlphaNumSpaceValidator.create(TRegex.create())
                 ])
-            ).add(
+            ).addRule(
                 'email',
-                new CompositeValidator([
-                    new RequiredValidator(),
-                    new EmailValidator()
+                TCompositeValidator.create([
+                    TRequiredValidator.create(),
+                    TEmailValidator.create(TRegex.create())
                 ])
-            ).add(
+            ).addRule(
                 'address',
-                new AphaNumSpaceValidator()
-            );
+                TAlphaNumSpaceValidator.create(TRegex.create())
+            ) as IRequestValidator);
     end;
 
     function TGuestBookCreateValidationMiddlewareFactory.build(const container : IDependencyContainer) : IDependency;

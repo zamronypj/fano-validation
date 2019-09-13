@@ -32,7 +32,9 @@ uses
     {---- put your controller factory here ---},
     GuestBookControllerFactory,
     GuestBookViewFactory,
-    GuestBookModelFactory;
+    GuestBookModelFactory,
+    GuestBookCreateValidationMiddlewareFactory,
+    GuestBookViewValidationMiddlewareFactory;
 
 
     procedure TBootstrapApp.buildDependencies(const container : IDependencyContainer);
