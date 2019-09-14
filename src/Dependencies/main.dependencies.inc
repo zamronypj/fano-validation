@@ -14,7 +14,8 @@
    Replace with TMiddlewareCollectionAwareFactory to support middleware
    or replace with your own implementation if required
  ------------------------------------------------}
-container.factory('routeMiddlewares', TNullMiddlewareCollectionAwareFactory.create());
+container.add('appMiddlewares', TMiddlewareCollectionAwareFactory.create());
+container.factory('routeMiddlewares', TMiddlewareCollectionAwareFactory.create());
 
 container.add(
     'gb-create-validator-middleware',
@@ -24,4 +25,13 @@ container.add(
 container.add(
     'gb-view-validator-middleware',
     TGuestBookViewValidationMiddlewareFactory.create()
+);
+
+container.add(
+    GuidToString(IDispatcher),
+    TDispatcherFactory.create(
+        container.get('appMiddlewares') as IMiddlewareCollectionAware,
+        container.get(GuidToString(IRouteMatcher)) as IRouteMatcher,
+        TRequestResponseFactory.create()
+    )
 );

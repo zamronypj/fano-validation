@@ -15,7 +15,7 @@ uses
 
 type
 
-    TBootstrapApp = class(TSimpleWebApplication)
+    TBootstrapApp = class(TSimpleScgiWebApplication)
     protected
         procedure buildDependencies(const container : IDependencyContainer); override;
         procedure buildRoutes(const container : IDependencyContainer); override;
@@ -45,7 +45,7 @@ uses
     procedure TBootstrapApp.buildRoutes(const container : IDependencyContainer);
     var router : IRouter;
     begin
-        router := container.get('router') as IRouter;
+        router := container.get(GuidToString(IRouter)) as IRouter;
         try
             {$INCLUDE Routes/routes.inc}
         finally

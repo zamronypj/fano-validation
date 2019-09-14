@@ -41,6 +41,6 @@ uses
 
     function TGuestBookViewValidationMiddlewareFactory.build(const container : IDependencyContainer) : IDependency;
     begin
-        result := TValidationMiddleware.create(createValidator());
+        result := TValidationMiddleware.create(createValidator(), true);
     end;
 end.

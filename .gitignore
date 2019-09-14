@@ -21,6 +21,7 @@ public/.htaccess
 #----------------------------------------------
 public/app.cgi
 cgi-bin/app.cgi
+bin/app.cgi
 
 #----------------------------------------------
 # Ignore generated log files
@@ -73,4 +74,3 @@ fp.ini
 # Ignore Visual Studio Code generated files
 #----------------------------------------------
 .vscode/
-

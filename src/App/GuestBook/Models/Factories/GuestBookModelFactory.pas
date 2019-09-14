@@ -39,6 +39,7 @@ uses
     var db : IRdbms;
     begin
         {---initialize database here---}
+        db := nil;
         { db := container.get('db') as IRdbms;}
         result := TGuestBookModel.create(db);
     end;
