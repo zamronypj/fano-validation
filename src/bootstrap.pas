@@ -34,6 +34,7 @@ uses
     GuestBookViewFactory,
     GuestBookModelFactory,
     GuestBookCreateValidationMiddlewareFactory,
+    GuestBookViewValidatorFactory,
     GuestBookViewValidationMiddlewareFactory;
 
 

@@ -47,6 +47,8 @@
 -Fu$USER_APP_DIR$/App/GuestBook/Views/Factories
 -Fu$USER_APP_DIR$/App/GuestBook/Models
 -Fu$USER_APP_DIR$/App/GuestBook/Models/Factories
+-Fu$USER_APP_DIR$/App/GuestBook/Validations
+-Fu$USER_APP_DIR$/App/GuestBook/Validations/Factories
 -Fu$USER_APP_DIR$/Middlewares
 -Fu$USER_APP_DIR$/Middlewares/Factories
 

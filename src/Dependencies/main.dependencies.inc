@@ -18,6 +18,11 @@ container.add('appMiddlewares', TMiddlewareCollectionAwareFactory.create());
 container.factory('routeMiddlewares', TMiddlewareCollectionAwareFactory.create());
 
 container.add(
+    'gb-view-validator',
+    TGuestBookViewValidatorFactory.create()
+);
+
+container.add(
     'gb-create-validator-middleware',
     TGuestBookCreateValidationMiddlewareFactory.create()
 );

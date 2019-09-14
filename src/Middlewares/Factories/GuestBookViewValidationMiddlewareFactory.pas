@@ -16,8 +16,6 @@ uses
 type
 
     TGuestBookViewValidationMiddlewareFactory = class(TFactory, IDependencyFactory)
-    private
-        function createValidator() : IRequestValidator;
     public
         function build(const container : IDependencyContainer) : IDependency; override;
     end;
@@ -27,20 +25,10 @@ implementation
 uses
     sysutils;
 
-    function TGuestBookViewValidationMiddlewareFactory.createValidator() : IRequestValidator;
-    begin
-        result := (TValidation.create(THashList.create()))
-            .addRule(
-                'id',
-                TCompositeValidator.create([
-                    TRequiredValidator.create(),
-                    TAlphaNumSpaceValidator.create(TRegex.create())
-                ])
-            ) as IRequestValidator;
-    end;
-
     function TGuestBookViewValidationMiddlewareFactory.build(const container : IDependencyContainer) : IDependency;
     begin
-        result := TValidationMiddleware.create(createValidator(), true);
+        result := TValidationMiddleware.create(
+            container.get('gb-view-validator') as IRequestValidator
+        );
     end;
 end.
