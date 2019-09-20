@@ -35,16 +35,9 @@ uses
     GuestBookController;
 
     function TGuestBookControllerFactory.build(const container : IDependencyContainer) : IDependency;
-    var routeMiddlewares : IMiddlewareCollectionAware;
     begin
-        routeMiddlewares := container.get('routeMiddlewares') as IMiddlewareCollectionAware;
-        try
-            result := TGuestBookController.create(
-                routeMiddlewares,
-                container.get('gb-view-validator') as IRequestValidator
-            );
-        finally
-            routeMiddlewares := nil;
-        end;
+        result := TGuestBookController.create(
+            container.get('gb-view-validator') as IRequestValidator
+        );
     end;
 end.

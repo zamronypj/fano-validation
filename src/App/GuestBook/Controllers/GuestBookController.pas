@@ -23,31 +23,25 @@ type
      *
      * @author [[AUTHOR_NAME]] <[[AUTHOR_EMAIL]]>
      *------------------------------------------------*)
-    TGuestBookController = class(TRouteHandler)
+    TGuestBookController = class(TAbstractController)
     private
         fValidator : IRequestValidator;
     public
-        constructor create(
-            const amiddlewares : IMiddlewareCollectionAware;
-            const validator : IRequestValidator
-        );
+        constructor create(const validator : IRequestValidator);
 
         destructor destroy(); override;
 
         function handleRequest(
             const request : IRequest;
-            const response : IResponse
+            const response : IResponse;
+            const args : IRouteArgsReader
         ) : IResponse; override;
     end;
 
 implementation
 
-    constructor TGuestBookController.create(
-        const amiddlewares : IMiddlewareCollectionAware;
-        const validator : IRequestValidator
-    );
+    constructor TGuestBookController.create(const validator : IRequestValidator);
     begin
-        inherited create(amiddlewares);
         fValidator := validator;
     end;
 
@@ -59,7 +53,8 @@ implementation
 
     function TGuestBookController.handleRequest(
           const request : IRequest;
-          const response : IResponse
+          const response : IResponse;
+          const args : IRouteArgsReader
     ) : IResponse;
     var validationRes : TValidationResult;
         i, len : integer;

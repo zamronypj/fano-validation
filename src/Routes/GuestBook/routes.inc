@@ -6,14 +6,12 @@
  * @license   [[LICENSE_URL]] ([[LICENSE]])
  *------------------------------------------------------------- *)
 
-(router.get(
+router.get(
     '/guestbook',
-    container.get('guestbookController') as IRouteHandler
-) as IMiddlewareCollectionAware)
-.addBefore(container.get('gb-view-validator-middleware') as IMiddleware);
+    container.get('guestbookController') as IRequestHandler
+).before(container.get('gb-view-validator-middleware') as IMiddleware);
 
-// (router.post(
+// router.post(
 //     '/guestbook',
-//     container.get('guestbookPostController') as IRouteHandler
-// ) as IMiddlewareCollectionAware)
-// .addBefore(container.get('gb-create-validator-middleware') as IMiddleware);
+//     container.get('guestbookPostController') as IRequestHandler
+// ).before(container.get('gb-create-validator-middleware') as IMiddleware);
