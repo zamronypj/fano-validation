@@ -10,9 +10,9 @@ router.get(
     '/guestbook',
     container.get('guestbookController') as IRequestHandler
 ).setName('guestbook-view')
-.before(container.get('gb-view-validator-middleware') as IMiddleware);
+.add(container.get('gb-view-validator-middleware') as IMiddleware);
 
 // router.post(
 //     '/guestbook',
 //     container.get('guestbookPostController') as IRequestHandler
-// ).before(container.get('gb-create-validator-middleware') as IMiddleware);
+// ).add(container.get('gb-create-validator-middleware') as IMiddleware);
