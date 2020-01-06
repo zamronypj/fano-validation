@@ -8,3 +8,4 @@
 {---put your routes registration here---}
 { router.get('/', THomeControllerFactory.create()); }
 {$INCLUDE GuestBook/routes.inc}
+{$INCLUDE Home/routes.inc}

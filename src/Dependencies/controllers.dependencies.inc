@@ -11,3 +11,5 @@
 {---put your dependencies registration here---}
 
 container.add('guestbookController', TGuestBookControllerFactory.create());
+
+container.add('homeController', THomeControllerFactory.create());

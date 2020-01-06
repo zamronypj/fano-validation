@@ -16,6 +16,12 @@ uses
 type
 
     TAppServiceProvider = class(TDaemonAppServiceProvider)
+    protected
+        function buildDispatcher(
+            const ctnr : IDependencyContainer;
+            const routeMatcher : IRouteMatcher;
+            const config : IAppConfiguration
+        ) : IDispatcher; override;
     public
         procedure register(const container : IDependencyContainer); override;
     end;
@@ -42,8 +48,26 @@ uses
     GuestBookModelFactory,
     GuestBookCreateValidationMiddlewareFactory,
     GuestBookViewValidatorFactory,
-    GuestBookViewValidationMiddlewareFactory;
+    GuestBookViewValidationMiddlewareFactory,
+    HomeControllerFactory;
 
+    function TAppServiceProvider.buildDispatcher(
+        const ctnr : IDependencyContainer;
+        const routeMatcher : IRouteMatcher;
+        const config : IAppConfiguration
+    ) : IDispatcher;
+    begin
+        ctnr.add('appMiddlewares', TMiddlewareListFactory.create());
+        ctnr.add(
+            GuidToString(IDispatcher),
+            TDispatcherFactory.create(
+                ctnr.get('appMiddlewares') as IMiddlewareLinkList,
+                routeMatcher,
+                TRequestResponseFactory.create()
+            )
+        );
+        result := ctnr.get(GuidToString(IDispatcher)) as IDispatcher;
+    end;
 
     procedure TAppServiceProvider.register(const container : IDependencyContainer);
     begin

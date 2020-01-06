@@ -51,6 +51,9 @@
 -Fu$USER_APP_DIR$/App/GuestBook/Validations/Factories
 -Fu$USER_APP_DIR$/Middlewares
 -Fu$USER_APP_DIR$/Middlewares/Factories
+-Fu$USER_APP_DIR$/App/Home/Controllers
+-Fu$USER_APP_DIR$/App/Home/Controllers/Factories
+
 
 
 

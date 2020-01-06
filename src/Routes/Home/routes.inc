@@ -6,18 +6,4 @@
  * @license   [[LICENSE_URL]] ([[LICENSE]])
  *------------------------------------------------------------- *)
 
-
-container.add(
-    'gb-view-validator',
-    TGuestBookViewValidatorFactory.create()
-);
-
-container.add(
-    'gb-create-validator-middleware',
-    TGuestBookCreateValidationMiddlewareFactory.create()
-);
-
-container.add(
-    'gb-view-validator-middleware',
-    TGuestBookViewValidationMiddlewareFactory.create()
-);
+router.get('/', container.get('homeController') as IRequestHandler);
