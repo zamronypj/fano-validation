@@ -1,6 +1,8 @@
-# Fano Web Framework Skeleton Application
+# Fano Validation Example Application
 
-Web application skeleton using Fano Framework, Pascal web application framework
+Web application skeleton using Fano Framework, Pascal web application framework that demonstrate how to use Fano Framework data validation feature.
+
+When you visit url /guestbook, the application middleware will validate if required query string parameter id is supplied and contains alpha numeric character. If failed, validation error will be reported. If success, string nice will be printed.
 
 This project is generated using [Fano CLI](https://github.com/fanoframework/fano-cli)
 command line tools to help scaffolding web application using Fano Framework.
